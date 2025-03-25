@@ -11,20 +11,7 @@ app.use(cors()); // Allow frontend to access the backend
 const PORT = 5000;
 
 // MongoDB Connection
-const uri = 'mongodb://localhost:27017';
-const client = new MongoClient(uri);
-
-async function connectDB() {
-    await client.connect();
-    console.log('Connected to MongoDB');
-}
-
-mongodb://localhost:27017/
-
-connectDB();
-
-const db = client.db('FreshTakesDelicacies');
-const menuCollection = db.collection('Menu');
+MONGO_URL = 'mongodb://localhost:27017/ds';
 
 // API Route to Get Menu Items
 app.get('/menu', async (req, res) => {
@@ -81,6 +68,19 @@ app.get('/api/activities', async (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+
+
+
+mongoose
+    .connect(MONGO_URL)
+    .then(() => {
+        app.listen(PORT,
+            () => {
+                console.log(`Server is listening on http://localhost:${PORT}`);
+            });
+    })
+    .catch(
+        (err) => {
+            console.log("Error Occurred");
+        }
+    );
