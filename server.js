@@ -11,7 +11,7 @@ app.use(cors()); // Allow frontend to access the backend
 const PORT = 5000;
 
 // MongoDB Connection
-MONGO_URL = 'mongodb://localhost:27017/ds';
+MONGO_URL = 'mongodb://localhost:27017/FreshTakesDelicacies';
 
 // API Route to Get Menu Items
 app.get('/menu', async (req, res) => {
